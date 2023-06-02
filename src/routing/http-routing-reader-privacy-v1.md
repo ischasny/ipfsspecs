@@ -19,7 +19,7 @@ order: 0
 tags: ['routing', 'double hashing', 'privacy']
 ---
 
-This specification describes an HTTP API for Privacy Preserving lookups. It's an extension to the existing HTTP Delegated Routing API and inherits all of its formats and design rationales. 
+This specification describes an HTTP API for Privacy Preserving over the Delegated Routing. It's an extension to the existing HTTP Delegated Routing API and inherits all of its formats and design rationales. 
 
 ## API Specification
 
@@ -59,9 +59,8 @@ already encoded as a part of the multihash format.
 ### API
 
 Reassebling the full `ProviderRecord` from the encrypted data will require multiple roundtrips to the server. The first one to fetch a list of `EncProviderRecordKey`s and then one per  
-`EncProviderRecordKey` to fetch additional metadata. In order to reduce the number of roundtrips to one the client implementation is advised to use the local libp2p peerstore for multiaddress discovery
-and then use [libp2p multistream select](https://github.com/multiformats/multistream-select) for protocol negotiaiton.
-
+`EncProviderRecordKey` to fetch `EncMetadata`. In order to reduce the number of roundtrips to one the client implementation is advised to use the local libp2p peerstore for multiaddress discovery
+and then [libp2p multistream select](https://github.com/multiformats/multistream-select) for protocol negotiation.
 
 #### `GET /routing/v1/encrypted/providers/{HASH2}`
 

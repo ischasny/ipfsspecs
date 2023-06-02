@@ -34,8 +34,8 @@ With Double Hashing in place Provider Records are encrypted and opaque to Conten
 Content Router can decrypt the relevant Provider Records and serve them via the existing Delegated Routing API. 
 However in order to benefit from the privacy enhancement users need to change the way they interact with the Content Routers, in particular:
 - A second hash over the original `Multihash` must be used when looking up the content;
-- Assembling a full Provider Record requires multiple roundtrips and / or local caching; 
-- Assembling a full Provider Record must be done on the User's side and involves decryption operations.
+- Assembling a full Provider Record requires multiple roundtrips to the server (can be optimised); 
+- Assembling a full Provider Record must be done on the client's side and involves hashing / decryption operations.
 
 This new way of interaction requires a different API. This IPIP does not deprecate the existing API but is rather an incremental improvement 
 to it. The existing API can still be fullfilled over the encrypted dataset, which is not true the other way around. 
@@ -49,7 +49,7 @@ See the Delegated Routing Reader Privacy Upgrade spec (:cite[http-routing-reader
 ## Design rationale
 
 This API proposal makes the following changes:
-- Adds new methods for looking up Encrypted Provider Records and the associated Metadata;
+- Adds new methods for looking up Encrypted Provider Records and the associated Encrypted Metadata;
 - Defines Hashing and Encryption functions and response payloads structure.
 
 There are no ideomatic changes to the API - all data formats, design rationales and principles outlined in the original [HTTP Delegated Routing IPIP](./ipip-0337.md) apply here. 
